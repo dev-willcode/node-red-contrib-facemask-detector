@@ -1,0 +1,29 @@
+{
+  "name": "tfjs-facemask-detector",
+  "version": "1.0.0",
+  "description": "A node-red node used to detect face masks using tensorflow and pre-trained AI.",
+  "main": "tfjs-facemask-detector",
+  "scripts": {
+    "start": "node-red"
+  },
+  "keywords": [
+    "node-red",
+    "node",
+    "mask",
+    "faces",
+    "AI",
+    "tensorflow",
+    "custom-vision"
+  ],
+  "author": "Willy Carreño",
+  "license": "MIT",
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^2.8.3",
+    "@microsoft/customvision-tfjs-node": "^1.1.0"
+  },
+  "node-red": {
+    "nodes": {
+      "tfjs-facemask-detector": "tfjs-facemask-detector.js"
+    }
+  }
+}
