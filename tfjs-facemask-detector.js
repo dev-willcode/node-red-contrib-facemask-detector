@@ -18,13 +18,14 @@ module.exports = function (RED) {
     node.on("input", async function (msg) {
       const predictions = await lib.evaluateImage(node.model, msg.payload);
       const predictionsResult = lib.processPredictions(predictions, {
-        threshold: 0.5,
+        threshold: config.threshold,
       });
 
       msg.payload = {
         results: predictionsResult,
         detected: lib.evaluateDetected(predictionsResult),
         quantity: lib.evaluateQuantity(predictionsResult),
+        threshold: config.threshold,
       };
       // enviar respuesta
       node.send(msg);

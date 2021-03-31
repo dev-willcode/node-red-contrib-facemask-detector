@@ -1,16 +1,30 @@
 const cv = require("@microsoft/customvision-tfjs-node");
 const tfnode = require("@tensorflow/tfjs-node");
+const path = require("path");
 
 // loading object detection model
 const loadModel = async function () {
-  const file = tfnode.io.fileSystem("model/model.json");
-  const model = new cv.ObjectDetectionModel();
-  await model.loadModelAsync(file);
+  let model = null;
+  let pathModel = path
+    .resolve(__dirname, "..", "model", "model.json")
+    .replace(/\\/g, "/");
+
+  try {
+    const file = tfnode.io.fileSystem(pathModel);
+    model = new cv.ObjectDetectionModel();
+    await model.loadModelAsync(file);
+  } catch (error) {
+    console.log("No se encontro el archivo de modelo");
+    console.log("path", pathModel);
+    console.log(error);
+  }
+
   return model;
 };
 
 // evaluate model with image and return predictions
 const evaluateImage = async function (model, data) {
+  console.log(__dirname);
   return await model.executeAsync(data);
 };
 
