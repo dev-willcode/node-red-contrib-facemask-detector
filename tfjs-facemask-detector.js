@@ -22,7 +22,8 @@ module.exports = function (RED) {
       });
 
       msg.payload = {
-        results: predictionsResult,
+        predictions: predictionsResult,
+        image: msg.payload,
         detected: lib.evaluateDetected(predictionsResult),
         quantity: lib.evaluateQuantity(predictionsResult),
         threshold: config.threshold,
