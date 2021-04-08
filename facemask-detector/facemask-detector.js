@@ -1,20 +1,19 @@
 module.exports = function (RED) {
-  const lib = require("./src/libs");
+  const lib = require("../lib/libs");
 
-  // load the model
   async function loadModel(node) {
     node.model = await lib.loadModel();
   }
 
-  // configuración inicial del nodo (init process)
-  function tfjsFaceMaskDetector(config) {
+  // initial configuration (init process)
+  function faceMaskDetector(config) {
     RED.nodes.createNode(this, config);
     const node = this;
 
-    // cargar el modelo a evaluar de face mask
+    // load model
     loadModel(node);
 
-    // al recibir una entrada
+    // when node receives an image input
     node.on("input", async function (msg) {
       const predictions = await lib.evaluateImage(node.model, msg.payload);
       const predictionsResult = lib.processPredictions(predictions, {
@@ -28,11 +27,11 @@ module.exports = function (RED) {
         quantity: lib.evaluateQuantity(predictionsResult),
         threshold: config.threshold,
       };
-      // enviar respuesta
+      // send response
       node.send(msg);
     });
   }
 
   // register the node with the runtime
-  RED.nodes.registerType("tfjs-facemask-detector", tfjsFaceMaskDetector);
+  RED.nodes.registerType("facemask-detector", faceMaskDetector);
 };

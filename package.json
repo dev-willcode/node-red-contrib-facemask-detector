@@ -1,8 +1,8 @@
 {
-  "name": "tfjs-facemask-detector",
-  "version": "1.0.0",
-  "description": "A node-red node used to detect face masks using tensorflow and pre-trained AI.",
-  "main": "tfjs-facemask-detector",
+  "name": "node-red-contrib-facemask-detector",
+  "version": "1.1.0",
+  "description": "A node-red node used to detect face masks using customvision (Tensorflow.js) and pre-trained AI.",
+  "main": "./facemask-detector/facemask-detector.js",
   "scripts": {
     "start": "node-red"
   },
@@ -23,7 +23,7 @@
   },
   "node-red": {
     "nodes": {
-      "tfjs-facemask-detector": "tfjs-facemask-detector.js"
+      "facemask-detector": "./facemask-detector/facemask-detector.js"
     }
   }
 }
