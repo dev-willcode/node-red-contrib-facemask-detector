@@ -24,7 +24,6 @@ const loadModel = async function () {
 
 // evaluate model with image and return predictions
 const evaluateImage = async function (model, data) {
-  console.log(__dirname);
   return await model.executeAsync(data);
 };
 
@@ -37,7 +36,6 @@ const filterFunc = function (indexFilter, index) {
 };
 
 const processPredictions = function (predictions, { threshold = 0.3 }) {
-  console.log("post-processed predictions", predictions[1]);
   const [bbox, probabilities, mask] = [0, 1, 2];
   const predictionIndex = [
     ...filterIterator(predictions, probabilities, threshold),
