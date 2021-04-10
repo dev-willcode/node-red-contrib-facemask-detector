@@ -1,0 +1,1 @@
+[{"id":"2cf09933.de90b6","type":"facemask-detector","z":"205739b5.da50b6","name":"facemask detector","threshold":0.5,"x":510,"y":260,"wires":[["8c7049ac.2f9aa8"]]}]
